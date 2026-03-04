@@ -1,6 +1,8 @@
 const express = require("express")
-const app = express()
+const mysql = require("mysql2")
 
+
+const app = express()
 app.use(express.json())
 
 app.get("/", (req, res) => {
@@ -11,7 +13,7 @@ app.listen(3001, () => {
     console.log("Servidor iniciado na porta 3001")
 })
 
-const mysql = require("mysql2")
+
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -20,9 +22,9 @@ const connection = mysql.createConnection({
     database: "oficina"
 })
 
-connerction.connection((err) =>{
+connection.connect((err) =>{
     if (err) {
-        console.error("Erro aoi conectar", err)
+        console.error("Erro ao conectar", err)
         return
     }
     console.log("Conectado ao MySql")
