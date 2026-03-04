@@ -13,8 +13,6 @@ app.listen(3001, () => {
     console.log("Servidor iniciado na porta 3001")
 })
 
-
-
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -28,5 +26,52 @@ connection.connect((err) =>{
         return
     }
     console.log("Conectado ao MySql")
+})
+
+app.post("/atendimentos", (req, res) => {
+    const {
+        data,
+        cpf,
+        nome,
+        contato,
+        email,
+        carro,
+        placa,
+        modelo,
+        ano,
+        cor,
+        interior,
+        plano,
+        descricao,
+        observacoes
+    } = req.body
+
+    const sql = 
+    "INSERT INTO atendimentos(data, cpf, nome, contato, email, carro, placa, modelo, ano, cor, interior, plano, descricao, observacoes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+
+    connection.query(sql, [
+        data,
+        cpf,
+        nome,
+        contato,
+        email,
+        carro,
+        placa,
+        modelo,
+        ano,
+        cor,
+        interior,
+        plano,
+        descricao,
+        observacoes
+    ], (err, result) => {
+        if (err) {
+            console.error("Erro ao inserir", err)
+            res.status(500).send("Erro ao salvar atendimento")
+            return
+        }
+
+        res.semd("Atendimento Salvo")
+    })
 })
 
