@@ -71,7 +71,7 @@ app.post("/atendimentos", (req, res) => {
             return
         }
 
-        res.semd("Atendimento Salvo")
+        res.send("Atendimento Salvo")
     })
 })
 
