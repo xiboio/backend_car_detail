@@ -75,3 +75,19 @@ app.post("/atendimentos", (req, res) => {
     })
 })
 
+
+app.get("/atendimentos/placa/:placa", (req, res) => {
+     const placa = req.params.placa
+
+     const sql = "SELECT * FROM atendimentos WHERE placa = ?"
+
+     connection.query(sql, [placa], (err, results) =>{
+        if (err) {
+            console.error("Erro na busca", err)
+            res.status(500).send("Erro ao buscar atendimentos")
+            return
+        }
+
+        res.json(results)
+     })
+})
