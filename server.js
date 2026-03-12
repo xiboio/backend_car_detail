@@ -16,10 +16,10 @@ app.listen(3001, () => {
 })
 
 const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "murilo02",
-    database: "oficina"
+    host: "",
+    user: "",
+    password: "",
+    database: ""
 })
 
 connection.connect((err) =>{
